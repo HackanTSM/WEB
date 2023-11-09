@@ -29,6 +29,18 @@ class Utilisateurs
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date_naissance = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $portfolio = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $login = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $mdp = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $sel = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +102,54 @@ class Utilisateurs
     public function setDateNaissance(\DateTimeInterface $date_naissance): static
     {
         $this->date_naissance = $date_naissance;
+
+        return $this;
+    }
+
+    public function getPortfolio(): ?string
+    {
+        return $this->portfolio;
+    }
+
+    public function setPortfolio(string $portfolio): static
+    {
+        $this->portfolio = $portfolio;
+
+        return $this;
+    }
+
+    public function getLogin(): ?string
+    {
+        return $this->login;
+    }
+
+    public function setLogin(string $login): static
+    {
+        $this->login = $login;
+
+        return $this;
+    }
+
+    public function getMdp(): ?string
+    {
+        return $this->mdp;
+    }
+
+    public function setMdp(string $mdp): static
+    {
+        $this->mdp = $mdp;
+
+        return $this;
+    }
+
+    public function getSel(): ?string
+    {
+        return $this->sel;
+    }
+
+    public function setSel(string $sel): static
+    {
+        $this->sel = $sel;
 
         return $this;
     }
