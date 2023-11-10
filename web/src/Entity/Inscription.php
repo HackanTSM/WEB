@@ -18,11 +18,11 @@ class Inscription
     private ?\DateTimeInterface $date = null;
 
     #[ORM\ManyToOne(inversedBy: 'les_Inscriptions')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, name: 'id_hackathon', referencedColumnName: 'id')]
     private ?Hackathon $un_Hackathon = null;
 
     #[ORM\ManyToOne(inversedBy: 'mes_inscriptions')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, name: 'id_utilisateur', referencedColumnName: 'id')]
     private ?Utilisateurs $un_Utilisateur = null;
 
     public function getNum(): ?int
