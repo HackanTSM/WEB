@@ -40,7 +40,7 @@ class Utilisateurs
     #[ORM\Column(length: 255)]
     private ?string $mdp = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 11)]
     private ?string $sel = null;
 
     #[ORM\OneToMany(mappedBy: 'un_Utilisateur', targetEntity: Inscription::class)]
@@ -60,7 +60,6 @@ class Utilisateurs
     {
         return $this->nom;
     }
-
     public function setNom(string $nom): static
     {
         $this->nom = $nom;
