@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\HackathonRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -22,6 +24,14 @@ class Hackathon
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date = null;
+
+    #[ORM\OneToMany(mappedBy: 'un_Hackathon', targetEntity: Inscription::class)]
+    private Collection $les_Inscriptions;
+
+    public function __construct()
+    {
+        $this->les_Inscriptions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -60,6 +70,36 @@ class Hackathon
     public function setDate(\DateTimeInterface $date): static
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Inscription>
+     */
+    public function getLesInscriptions(): Collection
+    {
+        return $this->les_Inscriptions;
+    }
+
+    public function addLesInscription(Inscription $lesInscription): static
+    {
+        if (!$this->les_Inscriptions->contains($lesInscription)) {
+            $this->les_Inscriptions->add($lesInscription);
+            $lesInscription->setUnHackathon($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLesInscription(Inscription $lesInscription): static
+    {
+        if ($this->les_Inscriptions->removeElement($lesInscription)) {
+            // set the owning side to null (unless already changed)
+            if ($lesInscription->getUnHackathon() === $this) {
+                $lesInscription->setUnHackathon(null);
+            }
+        }
 
         return $this;
     }

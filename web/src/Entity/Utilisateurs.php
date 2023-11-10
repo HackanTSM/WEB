@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UtilisateursRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -40,6 +42,14 @@ class Utilisateurs
 
     #[ORM\Column(length: 255)]
     private ?string $sel = null;
+
+    #[ORM\OneToMany(mappedBy: 'un_Utilisateur', targetEntity: Inscription::class)]
+    private Collection $mes_inscriptions;
+
+    public function __construct()
+    {
+        $this->mes_inscriptions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -150,6 +160,36 @@ class Utilisateurs
     public function setSel(string $sel): static
     {
         $this->sel = $sel;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Inscription>
+     */
+    public function getMesInscriptions(): Collection
+    {
+        return $this->mes_inscriptions;
+    }
+
+    public function addMesInscription(Inscription $mesInscription): static
+    {
+        if (!$this->mes_inscriptions->contains($mesInscription)) {
+            $this->mes_inscriptions->add($mesInscription);
+            $mesInscription->setUnUtilisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMesInscription(Inscription $mesInscription): static
+    {
+        if ($this->mes_inscriptions->removeElement($mesInscription)) {
+            // set the owning side to null (unless already changed)
+            if ($mesInscription->getUnUtilisateur() === $this) {
+                $mesInscription->setUnUtilisateur(null);
+            }
+        }
 
         return $this;
     }
