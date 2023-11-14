@@ -8,10 +8,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UtilisateurController extends AbstractController
 {
-    #[Route('/utilisateur', name: 'app_utilisateur')]
+    #[Route('/connexionUtilisateur', name: 'app_utilisateur')]
     public function index(): Response
     {
-        return $this->render('utilisateur/index.html.twig', [
+        return $this->render('utilisateur/connexionUtilisateur.html.twig', [
             'controller_name' => 'UtilisateurController',
         ]);
     }
