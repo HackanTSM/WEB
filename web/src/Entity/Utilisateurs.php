@@ -7,9 +7,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UtilisateursRepository::class)]
-class Utilisateurs
+class Utilisateurs implements UserInterface , PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -45,6 +47,59 @@ class Utilisateurs
 
     #[ORM\OneToMany(mappedBy: 'un_Utilisateur', targetEntity: Inscription::class)]
     private Collection $mes_inscriptions;
+
+
+    #[ORM\Column(type:"json")]
+    private $roles = [];
+
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->prenom." ".$this->nom;
+    }
+
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+        return $this;
+    }
+
+    public function getPassword(): string
+    {
+        // à remplacer éventuellement par la propriété contenant le mot de passe
+        return $this->mdp;
+    }
+
+    public function setPassword(string $password): self
+    {
+        // à remplacer éventuellement par la propriété contenant le mot de passe
+        $this->mdp = $password;
+        return $this;
+    }
+
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
+
+    /**
+     * Returning a salt is only needed if you are not using a modern
+     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
+    {
+        return null;
+    }
 
     public function __construct()
     {

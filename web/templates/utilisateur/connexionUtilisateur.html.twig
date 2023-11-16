@@ -9,16 +9,16 @@
 <div class="example-wrapper">
     <h1>Page de connexion</h1>
 
-    <form>
-        <label>login</label><br/>
-        <input id="login" name="login"></input><br/>
-        <label>pwd</label><br/>
-        <input></input><br/>
+    <form action="{{ path('app_utilisateur') }}" method="post">
+        <label for="login">login:</label><br/>
+        <input type="text" id="login" name="_username" value="{{ last_username }}"/><br/>
+        <label for="password">Password:</label><br/>
+        <input type="password" id="password" name="_password"/><br/>
 
  
-        <button>se connecter</button><br/><br/>
+        <button type="submit">Se connecter</button><br/><br/>
 
-        <button>créer un compte</button>
+        <button>Créer un compte</button>
  
     </form>
 

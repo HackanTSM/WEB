@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HackathonController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+<h1 style="text-decoration:underline">les hackathons :</h1>
+
+<div style="display: flex">
+{% for Hackathon in lesHackathon %}
+    <div class="card" style="margin: 10px; border: 1px solid black; padding: 10px">
+        <h2>{{ Hackathon.libelle }}</h2>
+        <p>{{ Hackathon.nb_place }}</p>
+        <p>{{ Hackathon.date|date("d/m/Y") }}</p>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}

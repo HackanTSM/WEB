@@ -50,7 +50,7 @@ class Hackathon
         return $this;
     }
 
-    public function getNbPlace(): ?int
+    public function getNb_Place(): ?int
     {
         return $this->nb_place;
     }
