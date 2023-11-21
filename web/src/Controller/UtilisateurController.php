@@ -9,14 +9,19 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UtilisateurController extends AbstractController
 {
-    #[Route('/connexionUtilisateur', name: 'app_utilisateur')]
+    #[Route('/connexionUtilisateur', name: 'app_login')]
     public function index(AuthenticationUtils $authenticationUtils): Response
     {
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
-        return $this->render('utilisateur/connexionUtilisateur.html.twig', [
+        return $this->render('login/connexionUtilisateur.html.twig', [
             'controller_name' => 'UtilisateurController',
             'last_username' => $lastUsername,
         ]);
+    }
+    #[Route('/logout', name: 'app_utilisateur')]
+    public function logout()
+    {
+
     }
 }
