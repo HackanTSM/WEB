@@ -15,6 +15,7 @@ class HackathonController extends AbstractController
     {
         return $this->render('hackathon/home.html.twig', []);
     }
+
     #[Route('/hackathon', name: 'app_hackathon')]
     public function index(ManagerRegistry $doctrine): Response
     {
@@ -22,6 +23,16 @@ class HackathonController extends AbstractController
         $LesHackathons = $repo->findAll();
         return $this->render('hackathon/listeH.html.twig', [
             "lesHackathon" => $LesHackathons
+        ]);
+
+    }
+    #[Route('/hackathon/{id}', name: 'app_hackathon_detail')]
+    public function detail(ManagerRegistry $doctrine, $id): Response
+    {
+        $repo = $doctrine->getRepository(Hackathon::class);
+        $LeHackathon = $repo->find($id);
+        return $this->render('hackathon/detail.html.twig', [
+            "leHackathon" => $LeHackathon
         ]);
 
     }

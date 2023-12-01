@@ -18,10 +18,10 @@
                 <a class="nav-link active" aria-current="page" href="/">Accueil</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/hackathon">Hackathons</a>
+                <a class="nav-link" href="{{path('app_hackathon')}}">Hackathons</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/connexionUtilisateur">Connexion / Inscription</a>
+                <a class="nav-link" href="{{path('app_login')}}">Connexion / Inscription</a>
             </li>
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
             <li><a href="{{ path('app_utilisateur') }}">Se déconnecter</a></li>

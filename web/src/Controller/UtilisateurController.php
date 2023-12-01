@@ -14,7 +14,7 @@ class UtilisateurController extends AbstractController
     {
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
-        return $this->render('login/connexionUtilisateur.html.twig', [
+        return $this->render('utilisateur/connexionUtilisateur.html.twig', [
             'controller_name' => 'UtilisateurController',
             'last_username' => $lastUsername,
         ]);
@@ -23,5 +23,12 @@ class UtilisateurController extends AbstractController
     public function logout()
     {
 
+    }
+     #[Route('/inscription', name: 'app_inscription')]
+    public function inscription()
+    {
+        return $this->render('utilisateur/inscription.html.twig', [
+            'controller_name' => 'UtilisateurController',
+        ]);
     }
 }
