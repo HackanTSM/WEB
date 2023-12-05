@@ -7,14 +7,27 @@
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
-<h1 style="text-decoration:underline">les hackathons :</h1>
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px">
+    <h1 style="text-decoration:underline">les hackathons :</h1>
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px">
+        recherche par titre: <input type="text" id="search" name="search" onkeyup="search()" style="margin-left: 10px">
+    </div>
+</div>
+
+
 
 <div style="display: flex">
 {% for Hackathon in lesHackathon %}
-    <div class="card" style="margin: 10px; border: 1px solid black; padding: 10px">
-        <h2>{{ Hackathon.libelle }}</h2>
-        <p>{{ Hackathon.nb_place }}</p>
-        <p>{{ Hackathon.date|date("d/m/Y") }}</p>
+    <div class="card" style="width: 400px; margin: 20px">
+
+        <img src="{{Hackathon.image}}" class="card-img-top" alt="img-{{Hackathon.titre}}">
+        <div class="card-body">
+
+            <h5 class="card-title"> <h5 style="font-weight: bold;">Titre:</h5> {{Hackathon.titre}}</h5>
+            <p class="card-text" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">place restante: {{Hackathon.nb_place}}</p>
+            <a href="{{path('app_hackathon_detail', {'id': Hackathon.id})}}" style="text-align: right">Détail du hackathon</a>
+
+        </div>
     </div>
 {% endfor %}
 </div>

@@ -14,13 +14,14 @@
         <input type="text" id="login" name="_username" value="{{ last_username }}"/><br/>
         <label for="password">Password:</label><br/>
         <input type="password" id="password" name="_password"/><br/>
+        <br/>
 
- 
-        <button type="submit">Se connecter</button><br/><br/>
-
-        <button>Créer un compte</button>
+        <button class="btn btn-secondary" type="submit">Se connecter</button><br/>
+        <br/>        
+        <a type="button" class="btn btn-outline-secondary" href="{{path('app_inscription')}}">Créer un compte</a>
  
     </form>
+    
 
 </div>
 {% endblock %}

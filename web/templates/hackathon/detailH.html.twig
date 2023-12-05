@@ -2,7 +2,7 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-<!--
+
 <div class="row" style="margin: 2em; padding 1em; display:bloc" >
     <div class="col-8">
     <a href="{{path('app_hackathon')}}" class="btn btn-primary">Retour</a>
@@ -16,12 +16,14 @@
 
             <div class="card-body"> 
                 <h4 style="font-weight: bold ">Titre: {{leHackathon.titre}}</h4>
-                <p class="card-text"> <p style="font-weight: bold">Resume:</p> {{leHackathon.resume}}</p>
-                <p class="card-text" style="display:inline-bloc">premiere diffusion le {{leHackathon.dateDiffusion|date('d-m-Y')}}</p>
-                <p class="card-text" style="display:inline-bloc">Possède {{leHackathon.nbEpisodes}} épisodes</p>
-                <p class="card-text" style="display:inline-bloc">Pays d'origine: {{leHackathon.lePays.nomPays}}</p>
+                <p class="card-text"> <p style="font-weight: bold">description:</p> {{leHackathon.description}}</p>
+                <p class="card-text" style="display:inline-bloc">commence le: {{leHackathon.date_debut|date('D-M-Y h:m:s')}}</p>
+                <p class="card-text" style="display:inline-bloc">fini le: {{leHackathon.date_fin|date('D-M-Y h:m:s')}}</p>
+                <p class="card-text" style="display:inline-bloc">localisation: {{leHackathon.rue}}, {{leHackathon.ville}} {{leHackathon.cp}}</p>
+                <p class="card-text" style="display:inline-bloc">reste: {{leHackathon.nb_place}} places disponible</p>
             </div>
         </div>
     </div>
-</div>-->
+</div>
+
 {% endblock %}

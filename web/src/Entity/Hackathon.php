@@ -184,24 +184,24 @@ class Hackathon
         return $this;
     }
 
-    public function getDateFin(): ?\DateTimeInterface
+    public function getDate_fin(): ?\DateTimeInterface
     {
         return $this->date_fin;
     }
 
-    public function setDateFin(\DateTimeInterface $date_fin): static
+    public function setDate_fin(\DateTimeInterface $date_fin): static
     {
         $this->date_fin = $date_fin;
 
         return $this;
     }
 
-    public function getDateDebut(): ?\DateTimeInterface
+    public function getDate_debut(): ?\DateTimeInterface
     {
         return $this->date_debut;
     }
 
-    public function setDateDebut(\DateTimeInterface $date_debut): static
+    public function setDate_debut(\DateTimeInterface $date_debut): static
     {
         $this->date_debut = $date_debut;
 

@@ -31,7 +31,7 @@ class HackathonController extends AbstractController
     {
         $repo = $doctrine->getRepository(Hackathon::class);
         $LeHackathon = $repo->find($id);
-        return $this->render('hackathon/detail.html.twig', [
+        return $this->render('hackathon/detailH.html.twig', [
             "leHackathon" => $LeHackathon
         ]);
 
