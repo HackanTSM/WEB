@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+
+{% for message in app.flashes('success') %}
+  <div class="alert alert-success">
+    {{ message }}
+  </div>
+{% endfor %}
+
+<div class="row" style="margin: 2em; padding 1em; display:bloc" >
+    <div class="col-8">
+    <a href="{{path('app_hackathon')}}" class="btn btn-primary">Retour</a>
+
+
+        <div class="conteneur" style="margin: 2em; padding 1em; display:flex; align-items: center;" >
+
+            <div>
+                <img src="{{leHackathon.image}}" style="weight:auto; height: 45em; margin:5px">
+            </div>
+
+            <div class="card-body"> 
+                <h4 style="font-weight: bold ">Titre: {{leHackathon.titre}}</h4>
+                <p class="card-text"> <p style="font-weight: bold">description:</p> {{leHackathon.description}}</p>
+                <p class="card-text" style="display:inline-bloc">commence le: {{leHackathon.date_debut|date('D-M-Y h:m:s')}}</p>
+                <p class="card-text" style="display:inline-bloc">fini le: {{leHackathon.date_fin|date('D-M-Y h:m:s')}}</p>
+                <p class="card-text" style="display:inline-bloc">localisation: {{leHackathon.rue}}, {{leHackathon.ville}} {{leHackathon.cp}}</p>
+                <p class="card-text" style="display:inline-bloc">reste {{nbPlaceRestante}} places disponible</p>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <button type="button" class="btn btn-primary" href="{{path('app_inscription', {'id': leHackathon.id})}}" > rejoindre le hackathon</button>
+                {% else %}
+                    pour s'inscrire au hackathon vous devez être connecter
+                    <a class="btn btn-primary" href="{{path('app_login')}}">Connexion</a>
+                {% endif %}
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
