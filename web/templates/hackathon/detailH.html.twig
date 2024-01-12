@@ -3,6 +3,12 @@
 
 {% block body %}
 
+{% for message in app.flashes('success') %}
+  <div class="alert alert-success">
+    {{ message }}
+  </div>
+{% endfor %}
+
 <div class="row" style="margin: 2em; padding 1em; display:bloc" >
     <div class="col-8">
     <a href="{{path('app_hackathon')}}" class="btn btn-primary">Retour</a>
@@ -20,7 +26,18 @@
                 <p class="card-text" style="display:inline-bloc">commence le: {{leHackathon.date_debut|date('D-M-Y h:m:s')}}</p>
                 <p class="card-text" style="display:inline-bloc">fini le: {{leHackathon.date_fin|date('D-M-Y h:m:s')}}</p>
                 <p class="card-text" style="display:inline-bloc">localisation: {{leHackathon.rue}}, {{leHackathon.ville}} {{leHackathon.cp}}</p>
-                <p class="card-text" style="display:inline-bloc">reste: {{leHackathon.nb_place}} places disponible</p>
+                <p class="card-text" style="display:inline-bloc">reste {{nbPlaceRestante}} places sur {{leHackathon.nb_place}}</p>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    {% if inscrit == false %}
+                        <a href="{{path('app_hackathon_inscription', {'id': leHackathon.id})}}" ><button type="button" class="btn btn-primary" >Rejoindre Le Hackathon</button></a>
+                    {% else %}
+                        <a href="{{path('app_hackathon_desinscription', {'id': leHackathon.id})}}" ><button type="button" class="btn btn-danger" >Se Désinscrire</button></a>
+                    {% endif %}
+                {% else %}
+                    pour s'inscrire au hackathon vous devez être connecter
+                    <a class="btn btn-warning" href="{{path('app_login')}}">Connexion</a>
+                {% endif %}
+                
             </div>
         </div>
     </div>

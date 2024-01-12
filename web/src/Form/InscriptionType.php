@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use App\Entity\Utilisateurs;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -19,7 +20,7 @@ class InscriptionType extends AbstractType
             ->add('date_naissance')
             ->add('portfolio')
             ->add('login')
-            ->add('mdp')
+            ->add('mdp', PasswordType::class, array('label' => 'Password'))
         ;
     }
 
